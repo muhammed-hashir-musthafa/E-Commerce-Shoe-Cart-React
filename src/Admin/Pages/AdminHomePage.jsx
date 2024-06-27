@@ -15,6 +15,8 @@ export const AdminHomePage = () => {
     });
   };
   const navigate=useNavigate()
+
+  // console.log(filterItems);
   return (
     <>
       <div className="sm:ms-52">

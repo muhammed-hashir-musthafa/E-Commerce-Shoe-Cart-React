@@ -21,7 +21,7 @@ export default function UsersLists() {
       })
       .catch((err) => toast.error("Failed to delete user"));
   };
-  // console.log(users);
+  // console.log(filterUsers);
   return (
     <>
       <SearchBar />

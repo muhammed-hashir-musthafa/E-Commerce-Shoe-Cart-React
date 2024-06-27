@@ -79,7 +79,7 @@ export default function RegistrationPage() {
           address: [],
           pincode:[],
           cart: [],
-          ordered: [],
+          orders: [],
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}

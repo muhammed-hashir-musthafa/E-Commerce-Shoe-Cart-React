@@ -5,35 +5,9 @@
       "name": "test",
       "email": "test@gmail.com",
       "password": "aQ@123456",
-      "address": [
-        "Test (H), test road, test, 6733546 "
-      ],
-      "pincode": [
-        "673542"
-      ],
+      "address": ["Test"],
+      "pincode": ["641502"],
       "cart": [
-        {
-          "title": "Otes Tan Men Ruosh",
-          "imageSrc": "https://img.tatacliq.com/images/i11/437Wx649H/MP000000017535835_437Wx649H_202305142316151.jpeg",
-          "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "3000",
-          "color": "Brown",
-          "category": "men",
-          "quantity": 2,
-          "id": "dc5e"
-        }
-      ],
-      "orders": [
-        {
-          "title": "Men's Hiking shoe",
-          "imageSrc": "https://cdn.pixabay.com/photo/2015/02/09/13/41/shoe-629644_960_720.jpg",
-          "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "5000",
-          "color": "Orange",
-          "category": "men",
-          "quantity": 7,
-          "id": "ad01"
-        },
         {
           "id": "00a4",
           "title": "JOGFLOW 100 Grip",
@@ -42,9 +16,20 @@
           "price": "2500",
           "color": "Khaki ",
           "category": "men",
-          "quantity": 2
+          "quantity": 1
+        },
+        {
+          "title": "Men's Hiking shoe",
+          "imageSrc": "https://cdn.pixabay.com/photo/2015/02/09/13/41/shoe-629644_960_720.jpg",
+          "imageAlt": "Front of men's Basic Tee in black.",
+          "price": "5000",
+          "color": "Orange",
+          "category": "men",
+          "quantity": 1,
+          "id": "ad01"
         }
-      ]
+      ],
+      "orders": []
     },
     {
       "id": "a96b",
@@ -54,7 +39,7 @@
       "address": [],
       "pincode": [],
       "cart": [],
-      "ordered": []
+      "orders": []
     },
     {
       "id": "545a",
@@ -63,19 +48,8 @@
       "password": "aQ@123456",
       "address": [],
       "pincode": [],
-      "cart": [
-        {
-          "title": "Otes Tan Men Ruosh",
-          "imageSrc": "https://img.tatacliq.com/images/i11/437Wx649H/MP000000017535835_437Wx649H_202305142316151.jpeg",
-          "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "3000",
-          "color": "Brown",
-          "category": "men",
-          "quantity": 1,
-          "id": "dc5e"
-        }
-      ],
-      "ordered": []
+      "cart": [],
+      "orders": []
     }
   ],
   "products": [

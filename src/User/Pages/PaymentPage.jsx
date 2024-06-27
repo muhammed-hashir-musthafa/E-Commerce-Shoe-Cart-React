@@ -40,23 +40,31 @@ const Payment = () => {
       const preOrder = await axios.get(`http://localhost:8000/User/${id}`);
       const prevOrder = preOrder.data.orders;
       const updatedOrder = [...orders, ...prevOrder];
-
-      await axios
-        .patch(`http://localhost:8000/User/${id}`, { orders: updatedOrder })
-        .then((res) => {
-          setOrders(res.data.orders);
-        })
-        .catch((err) => toast.error("Something went wrong", err.message));
-      setCart([]);
-      await axios
-        .patch(`http://localhost:8000/User/${id}`, { cart: [] })
-        .then((res) => {
-          setCart(res.data.cart);
-        })
-        .catch((err) => toast.error("Something went wrong", err.message));
-      resetForm();
-      toast.success(`You Paid ₹${Subtotal} Succesfully`);
-      navigate("/products");
+      const address = preOrder.data.address 
+      const pincode = preOrder.data.pincode
+      if(address.length>0 && pincode.length>0)
+        {
+          await axios
+            .patch(`http://localhost:8000/User/${id}`, { orders: updatedOrder })
+            .then((res) => {
+              setOrders(res.data.orders);
+            })
+            .catch((err) => toast.error("Something went wrong", err.message));
+          setCart([]);
+          await axios
+            .patch(`http://localhost:8000/User/${id}`, { cart: [] })
+            .then((res) => {
+              setCart(res.data.cart);
+            })
+            .catch((err) => toast.error("Something went wrong", err.message));
+          resetForm();
+          toast.success(`You Paid ₹${Subtotal} Succesfully`);
+          navigate("/products");
+        }
+        else{
+          toast.warning("Please Update Your Address")
+          
+        }
     } catch (error) {
       resetForm();
       setErrors({ submit: error.message });

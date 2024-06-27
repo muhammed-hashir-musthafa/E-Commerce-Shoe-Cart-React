@@ -1,20 +1,19 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../User/Componet/Contexts";
 
-export default function SearchBar() {
+export default function SearchBar({ flag }) {
   const { searchFilter, searchFilterUser } = useContext(CartContext);
-
   const [searchValue, setSearchValue] = useState("");
+  const [searchValueUsers, setSearchValueUsers] = useState("");
+
   const searchChange = (e) => {
     setSearchValue(e.target.value);
+    setSearchValueUsers(e.target.value);
   };
 
   const searchHandle = () => {
     searchFilter(searchValue);
-    searchFilterUser(searchValue);
-    setTimeout(() => {
-      setSearchValue("");
-    }, 600);
+    searchFilterUser(searchValueUsers);
   };
 
   const handleKeyDown = (e) => {
@@ -22,7 +21,6 @@ export default function SearchBar() {
       searchHandle();
     }
   };
-
   return (
     <>
       <div className="flex justify-center">

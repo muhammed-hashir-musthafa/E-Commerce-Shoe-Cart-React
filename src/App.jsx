@@ -38,7 +38,7 @@ function App() {
               element={<ProtectedRoute element={<CartPage />} />}
             />
             <Route
-              path="products/:id"
+              path="products/:id" 
               element={<ProtectedRoute element={<ProductDetails />} />}
             />
             <Route

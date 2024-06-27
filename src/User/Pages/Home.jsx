@@ -345,58 +345,52 @@ export default function Home() {
               <span className="sr-only">Close</span>
               <XMarkIcon className="h-6 w-6 end-0" aria-hidden="true" />
             </button>
-            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm text-center rounded-lg">
-              {userOrders ? (
-                <>
-                  <thead className="ltr:text-left rtl:text-right">
-                    <tr>
-                      <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        Product Title
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        Product Color
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        Product Qunatity
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        Product Price
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        Total
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {userOrders.length > 0 ? (
-                      userOrders.map((order) => (
-                        <tr key={order.id} className="odd:bg-gray-50">
-                          <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                            {order.title}
-                          </td>
-                          <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            {order.color}
-                          </td>
-                          <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            {order.quantity}
-                          </td>
-                          <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            {order.price}
-                          </td>
-                          <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            {order.price * order.quantity}
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <p>No Orders Found</p>
-                    )}
-                  </tbody>
-                </>
-              ) : (
-                <div className="sm:p-5 sm:px-20 p-2 px-10">No Orders Found</div>
-              )}
-            </table>
+            {userOrders.length > 0 ? (
+              <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm text-center rounded-lg">
+                <thead className="ltr:text-left rtl:text-right">
+                  <tr>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Product Title
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Product Color
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Product Qunatity
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Product Price
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {userOrders.map((order) => (
+                  <tr key={order.id} className="odd:bg-gray-50">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      {order.title}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.color}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.quantity}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.price}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.price * order.quantity}
+                    </td>
+                  </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="p-5 px-20 bg-white rounded-lg">No Orders Found</p>
+            )}
           </div>
         </div>
       )}
