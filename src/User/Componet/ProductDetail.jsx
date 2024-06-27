@@ -10,8 +10,8 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { products } from "../Pages/ProductPage";
 import { CartContext } from "./Contexts";
+
 
 const product1 = {
   // name: "",
@@ -30,20 +30,35 @@ function classNames(...classes) {
 }
 
 export default function ProductDetail() {
+  const { addToCart, products} = useContext(CartContext);
   const { id } = useParams();
-  const idNum = Number(id.slice(1));
+  const idNum = id.slice(1);
 
-  const product = products.find((product) => product.id === idNum);
+  const product = products.find((item)=> item.id === idNum)
+
+  // console.log(product);
 
   const [open, setOpen] = useState(true);
   const [selectedColor, setSelectedColor] = useState(product1.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product1.sizes[2]);
 
-  const { addToCart, updateQuantity } = useContext(CartContext);
+  const [newQuantity,setNewQuantity]=useState(product.quantity)
+
+  const handleChange=(change)=>{
+    const updatedQuantity = newQuantity + change;
+    if (updatedQuantity > 0) {
+      setNewQuantity(updatedQuantity);
+      // updateQuantity(product.id, updatedQuantity);
+    }
+  }
 
   const handleCart = () => {
-    addToCart(product);
+    const productToAdd={...product,quantity:newQuantity}
+    addToCart(productToAdd);
   };
+  // const newQuantity =product.quantity
+
+  // console.log(newQuantity);
   return (
     <>
       <Transition show={open}>
@@ -94,7 +109,7 @@ export default function ProductDetail() {
                       </div>
                       <div className="sm:col-span-8 lg:col-span-7">
                         <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
-                          {product.name}
+                          {product.title}
                         </h2>
 
                         <section
@@ -105,12 +120,9 @@ export default function ProductDetail() {
                             Product information
                           </h3>
 
-                          <p className="text-2xl text-gray-900">
+                          <p className="text-xl text-gray-900">
                             ₹{product.price}
                           </p>
-                          <h4 className="text-1xl font-medium font-sans">
-                            It is a Good & High Quality Product
-                          </h4>
                         </section>
 
                         <section
@@ -235,14 +247,16 @@ export default function ProductDetail() {
                             </fieldset>
                             <p className="text-gray-500 pt-10">
                               <button
-                                onClick={() => product.quantity - 1}
+                                type="button"
+                                onClick={()=>handleChange(-1)}
                                 className="px-1 py-.5 bg-indigo-500 text-white font-semibold text-base rounded shadow hover:bg-indigo-600 focus:outline-none  focus:ring-indigo-600"
                               >
                                 -
                               </button>{" "}
-                              Qty {product.quantity}{" "}
+                              Qty {newQuantity}{" "}
                               <button
-                                onClick={() => product.quantity + 1}
+                                type="button"
+                                onClick={()=>handleChange(1)}
                                 className="px-1 py-.5 bg-indigo-500 text-white font-semibold text-base rounded shadow hover:bg-indigo-600 focus:outline-none  focus:ring-indigo-600"
                               >
                                 +
