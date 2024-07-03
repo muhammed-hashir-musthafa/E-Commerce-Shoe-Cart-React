@@ -121,16 +121,6 @@
           "category": "men",
           "quantity": 2,
           "id": "dc5e"
-        },
-        {
-          "id": "9f5b",
-          "title": "Women's North Plus",
-          "imageSrc": "https://www.campusshoes.com/cdn/shop/files/NORTHPLUS_11G-677_BLK.jpg?v=1705644888",
-          "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "3500",
-          "color": "Black",
-          "category": "women",
-          "quantity": 2
         }
       ],
       "orders": []
