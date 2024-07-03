@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "../Componet/Contexts";
-import * as yup from "yup";
+ import * as yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { CartContext } from "../../Componet/Contexts/Contexts";
 
 const Payment = () => {
   const id = localStorage.getItem("id");
@@ -13,6 +13,10 @@ const Payment = () => {
   const navigate = useNavigate();
   const userLogin = localStorage.getItem("id");
   const user = filterUsers.find((user) => user.id === userLogin);
+
+  const Subtotal = cart.reduce((total, product) => {
+    return total + parseFloat(product.price) * product.quantity;
+  }, 0);
 
   // console.log(user);
   const validationSchema = yup.object({
@@ -31,41 +35,54 @@ const Payment = () => {
       .matches(/^\d{3}$/, "Must be exactly 3 digits"),
   });
 
-  const handleSubmit = async (
-    values,
-    { setSubmitting, resetForm, setErrors }
-  ) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm, setErrors }) => {
     try {
-      // console.log(values);
       const preOrder = await axios.get(`http://localhost:8000/User/${id}`);
       const prevOrder = preOrder.data.orders;
-      const updatedOrder = [...orders, ...prevOrder];
-      const address = preOrder.data.address 
-      const pincode = preOrder.data.pincode
-      if(address.length>0 && pincode.length>0)
-        {
-          await axios
-            .patch(`http://localhost:8000/User/${id}`, { orders: updatedOrder })
-            .then((res) => {
-              setOrders(res.data.orders);
-            })
-            .catch((err) => toast.error("Something went wrong", err.message));
-          setCart([]);
-          await axios
-            .patch(`http://localhost:8000/User/${id}`, { cart: [] })
-            .then((res) => {
-              setCart(res.data.cart);
-            })
-            .catch((err) => toast.error("Something went wrong", err.message));
-          resetForm();
-          toast.success(`You Paid ₹${Subtotal} Succesfully`);
-          navigate("/products");
-        }
-        else{
-          toast.warning("Please Update Your Address")
-          
-        }
+      const address = preOrder.data.address;
+      const pincode = preOrder.data.pincode;
+  
+      const orderDetails = {
+        Orders: cart,
+        CustomerName: values.name,
+        Total: Subtotal,
+        DeliveryAddress: address,
+        DeliveryPincode: pincode,
+      };
+  
+      const updatedOrder = [...prevOrder, orderDetails];
+  
+      if (address.length > 0 && pincode.length > 0) {
+        await axios
+          .patch(`http://localhost:8000/User/${id}`, { orders: updatedOrder })
+          .then((res) => {
+            setOrders(res.data.orders);
+          })
+          .catch((err) => {
+            toast.error("Something went wrong");
+            console.error(err.message);
+          });
+  
+        setCart([]);
+  
+        await axios
+          .patch(`http://localhost:8000/User/${id}`, { cart: [] })
+          .then((res) => {
+            setCart(res.data.cart);
+          })
+          .catch((err) => {
+            toast.error("Something went wrong");
+            console.error(err.message);
+          });
+  
+        resetForm();
+        toast.success(`You Paid ₹${Subtotal} Successfully`);
+        navigate("/products");
+      } else {
+        toast.warning("Please Update Your Address");
+      }
     } catch (error) {
+      toast.error("Fetch Failed");
       resetForm();
       setErrors({ submit: error.message });
     } finally {
@@ -73,10 +90,7 @@ const Payment = () => {
     }
   };
 
-  const Subtotal = cart.reduce((total, product) => {
-    return total + parseFloat(product.price) * product.quantity;
-  }, 0);
-
+ 
   return (
     <div className="max-w-lg mx-auto p-6 my-24 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold mb-6">Payment Details</h2>

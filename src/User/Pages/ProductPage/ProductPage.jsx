@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../Componet/Contexts";
-import SearchBar from "../../G-Components/SearchBar";
-import { toast } from "react-toastify";
+ import { toast } from "react-toastify";
+import { CartContext } from "../../Componet/Contexts/Contexts";
+import SearchBar from "../../../G-Components/SearchBar/SearchBar";
 
 const ProductPage = () => {
   const { addToCart, filterItems } = useContext(CartContext);

@@ -2,8 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { CartContext } from "../../User/Componet/Contexts";
-import SearchBar from "../../G-Components/SearchBar";
+import { CartContext } from "../../../User/Componet/Contexts/Contexts";
+import SearchBar from "../../../G-Components/SearchBar/SearchBar";
 
 export default function UsersLists() {
   const navigate = useNavigate();

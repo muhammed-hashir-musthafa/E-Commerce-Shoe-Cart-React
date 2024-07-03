@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import Logo from "../../Assets/Logo white.png";
+import Logo from "../../../Assets/Logo white.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
-import { CartContext } from "../Componet/Contexts";
-import { toast } from 'react-toastify';
+ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { CartContext } from "../../Componet/Contexts/Contexts";
 
 const LoginPage = () => {
   const navigate = useNavigate();

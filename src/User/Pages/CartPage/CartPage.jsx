@@ -8,8 +8,8 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "../Componet/Contexts";
-import { toast } from "react-toastify";
+ import { toast } from "react-toastify";
+import { CartContext } from "../../Componet/Contexts/Contexts";
 
 // const products = [
 //   {

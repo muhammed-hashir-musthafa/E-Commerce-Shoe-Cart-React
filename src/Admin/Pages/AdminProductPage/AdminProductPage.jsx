@@ -2,26 +2,33 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { CartContext } from "../../User/Componet/Contexts";
-import SearchBar from "../../G-Components/SearchBar";
+import { CartContext } from "../../../User/Componet/Contexts/Contexts";
+import SearchBar from "../../../G-Components/SearchBar/SearchBar";
 
-export const AdminHomePage = () => {
-  const { filterItems, setFilterItems } = useContext(CartContext);
+export const AdminProductPage = () => {
+  const { filterItems, setFilterItems, setCategory, categorize, category } =
+    useContext(CartContext);
+
+  const handleCategory = () => {
+    categorize(category);
+  };
 
   const handleProductRemove = (product) => {
     axios.delete(`http://localhost:8000/products/${product.id}`).then(() => {
-      setFilterItems((preCart) => preCart.filter((user) => user.id !== product.id))
-      toast.success(`Product '${product.title}' Removed`)
+      setFilterItems((preCart) =>
+        preCart.filter((user) => user.id !== product.id)
+      );
+      toast.success(`Product '${product.title}' Removed`);
     });
   };
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   // console.log(filterItems);
   return (
     <>
-      <div className="sm:ms-52">
-        <div className="bg-white">
-          <div className="lg:pb-0 pb-5 text-center sm:text-start ">
+      <div className="sm:ms-52 ">
+        <div className="bg-white ">
+          <div className="lg:pb-0 pb-5 text-center sm:text-start flex justify-between ">
             <Link
               to={"/admin/addproduct"}
               type="button"
@@ -29,8 +36,38 @@ export const AdminHomePage = () => {
             >
               Add New Product
             </Link>
+            <select
+              className="text-sm font-semibold leading-6 text-gray-900 text-center me-10"
+              onChange={(e) => setCategory(e.target.value)}
+              onClick={handleCategory}
+            >
+              <option
+                className="text-sm font-semibold leading-6 text-gray-900 text-center"
+                value="all"
+              >
+                Categories
+              </option>
+              <option
+                className="text-sm font-semibold leading-6 text-gray-900 text-center"
+                value="all"
+              >
+                All
+              </option>
+              <option
+                className="text-sm font-semibold leading-6 text-gray-900 text-center"
+                value="men"
+              >
+                Men
+              </option>
+              <option
+                className="text-sm font-semibold leading-6 text-gray-900 text-center"
+                value="women"
+              >
+                Women
+              </option>
+            </select>
           </div>
-            <SearchBar/>
+          <SearchBar />
           <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900">
               Special for you
@@ -39,7 +76,7 @@ export const AdminHomePage = () => {
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
               {filterItems.map((product) => (
                 <div key={product.id} className="group relative">
-                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 sm:h-80 border">
+                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 sm:h-80 border">
                     <img
                       src={product.imageSrc}
                       alt={product.imageAlt}
@@ -62,9 +99,8 @@ export const AdminHomePage = () => {
 
                     <div className="text-center">
                       <button
-                      onClick={()=>
-                        {
-                          navigate(`/admin/products/:${product.id}`)
+                        onClick={() => {
+                          navigate(`/admin/products/:${product.id}`);
                         }}
                         type="button"
                         className="rounded-md bg-indigo-600 w-1/2  py-2  mt-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

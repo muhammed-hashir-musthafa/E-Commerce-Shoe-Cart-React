@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import logo from "../../Assets/Logo.png";
-import fontLogo from "../../Assets/font.png";
+import logo from "../../../Assets/Logo.png";
+import fontLogo from "../../../Assets/font.png";
 import { Link } from "react-router-dom";
 import {
   Dialog,
@@ -13,12 +13,12 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Outlet } from "react-router-dom";
-import { CartContext } from "../Componet/Contexts";
-import profileIcon from "../../Assets/user-icon.png";
+ import profileIcon from "../../../Assets/user-icon.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { CartContext } from "../../Componet/Contexts/Contexts";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -74,8 +74,8 @@ export default function Home() {
       const preAddress = await axios.get(
         `http://localhost:8000/User/${user.id}`
       );
-      const prevAddress = preAddress.data.address;
-      const prevPin = prevAddress.data.pincode
+      // const prevAddress = preAddress.data.address;
+      // const prevPin = preAddress.data.pincode
       const currentAddress = Array.isArray(values.address)
         ? values.address
         : [values.address];

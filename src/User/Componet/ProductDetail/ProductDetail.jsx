@@ -10,8 +10,8 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { CartContext } from "./Contexts";
-
+import { CartContext } from "../Contexts/Contexts";
+ 
 
 const product1 = {
   // name: "",

@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import logo from "../../Assets/Logo.png";
-import fontLogo from "../../Assets/font.png";
-import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../Assets/Logo.png";
+import fontLogo from "../../../Assets/font.png";
+import { Link } from "react-router-dom";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Outlet } from "react-router-dom";
-import { CartContext } from "../../User/Componet/Contexts";
+import { CartContext } from "../../../User/Componet/Contexts/Contexts";
 
 export const AdminSidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,13 +19,13 @@ export const AdminSidebar = () => {
 
   return (
     <>
-      <header className="bg-white fixed w-full z-10">
+      <header className="fixed w-full z-10">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8"
+          className="mx-auto flex max-w-7xl items-center justify-center p-6 sm:p-3 lg:px-8 bg-white"
           aria-label="Global"
         >
           <img src={logo} alt="Logo" className="w-12 md:hidden me-5" />
-          <div className="flex sm:hidden">
+          <div className="flex md:hidden">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -35,42 +35,11 @@ export const AdminSidebar = () => {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <PopoverGroup className="hidden sm:flex lg:gap-x-12">
-            <select
-              className="text-sm font-semibold leading-6 text-gray-900 text-center"
-              onChange={(e) => setCategory(e.target.value)}
-              onClick={handleCategory}
-            >
-              <option
-                className="text-sm font-semibold leading-6 text-gray-900 text-center"
-                value="all"
-              >
-                Categories
-              </option>
-              <option
-                className="text-sm font-semibold leading-6 text-gray-900 text-center"
-                value="all"
-              >
-                All
-              </option>
-              <option
-                className="text-sm font-semibold leading-6 text-gray-900 text-center"
-                value="men"
-              >
-                Men
-              </option>
-              <option
-                className="text-sm font-semibold leading-6 text-gray-900 text-center"
-                value="women"
-              >
-                Women
-              </option>
-            </select>
-          </PopoverGroup>
+         
         </nav>
 
         <Dialog
-          className="sm:hidden"
+          className="md:hidden"
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
@@ -109,7 +78,7 @@ export const AdminSidebar = () => {
                   </select>
                   <Link
                     onClick={() => setMobileMenuOpen(false)}
-                    to={"/admin"}
+                    to={"/admin/productPage"}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Products
@@ -160,8 +129,8 @@ export const AdminSidebar = () => {
           </DialogPanel>
         </Dialog>
       </header>
-      <div className="flex h-screen w-fit px-5 flex-col justify-between border-e md:visible invisible bg-white top-8 absolute z-10">
-        <div className="px-4 py-6">
+      <div className="flex h-screen w-fit flex-col justify-between  md:visible invisible bg-white top-8 absolute z-10">
+        <div className="px-4 py-6 fixed border-r h-full">
           <img
             className="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600"
             src={fontLogo}
@@ -169,9 +138,17 @@ export const AdminSidebar = () => {
 
           <ul className="mt-6 space-y-1">
             <li>
+              <Link
+                to={"/admin"}
+                className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
               <details className="group [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                  <Link to={"/admin"} className="text-sm font-medium">
+                  <Link to={"/admin/productPage"} className="text-sm font-medium">
                     Products
                   </Link>
                   <span className="shrink-0 transition duration-300 group-open:-rotate-180">
@@ -223,7 +200,7 @@ export const AdminSidebar = () => {
           </ul>
         </div>
 
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
+        {/* <div className="sticky  inset-x-0 bottom-0 border-t border-gray-100">
           <div
             href="#"
             className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50"
@@ -242,9 +219,9 @@ export const AdminSidebar = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-      <main className="pt-28">
+      <main className="pt-28 sm:pt-20">
         <Outlet />
       </main>
     </>

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { CartContext } from "../User/Componet/Contexts";
+import { CartContext } from "../../User/Componet/Contexts/Contexts";
 
 export default function SearchBar({ flag }) {
   const { searchFilter, searchFilterUser } = useContext(CartContext);
@@ -11,7 +11,7 @@ export default function SearchBar({ flag }) {
     setSearchValueUsers(e.target.value);
   };
 
-  const searchHandle = () => {
+  const searchHandle = () => {``
     searchFilter(searchValue);
     searchFilterUser(searchValueUsers);
   };
@@ -37,7 +37,7 @@ export default function SearchBar({ flag }) {
             value={searchValue}
             onKeyDown={handleKeyDown}
             onChange={searchChange}
-            className="w-full rounded-md border-gray-200 py-1.5 pe-10 shadow-md sm:text-sm ps-2 sm:me-5 me-0  border"
+            className="w-full rounded-md border-gray-200 py-1.5 pe-10 shadow sm:text-sm ps-2 sm:me-5 me-0  border"
           />
 
           <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
