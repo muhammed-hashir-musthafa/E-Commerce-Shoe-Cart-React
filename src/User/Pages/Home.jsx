@@ -75,6 +75,7 @@ export default function Home() {
         `http://localhost:8000/User/${user.id}`
       );
       const prevAddress = preAddress.data.address;
+      const prevPin = prevAddress.data.pincode
       const currentAddress = Array.isArray(values.address)
         ? values.address
         : [values.address];
@@ -82,10 +83,11 @@ export default function Home() {
         ? values.pincode
         : [values.pincode];
       // console.log(pincode);
-      const updatedAddress = [...currentAddress, ...prevAddress];
+      // const updatedAddress = [...currentAddress, ...prevAddress];
+      // const updatedPincode =[...pincode,...prevPin]
       await axios
         .patch(`http://localhost:8000/User/${user.id}`, {
-          address: updatedAddress,
+          address: currentAddress,
           pincode: pincode,
         })
         .then(() => console.log("success"))

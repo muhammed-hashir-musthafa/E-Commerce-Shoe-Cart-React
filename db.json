@@ -5,8 +5,12 @@
       "name": "test",
       "email": "test@gmail.com",
       "password": "aQ@123456",
-      "address": ["Test"],
-      "pincode": ["641502"],
+      "address": [
+        "Test City , Testogram "
+      ],
+      "pincode": [
+        "987654"
+      ],
       "cart": [
         {
           "id": "00a4",
@@ -16,7 +20,7 @@
           "price": "2500",
           "color": "Khaki ",
           "category": "men",
-          "quantity": 1
+          "quantity": 3
         },
         {
           "title": "Men's Hiking shoe",
@@ -25,7 +29,7 @@
           "price": "5000",
           "color": "Orange",
           "category": "men",
-          "quantity": 1,
+          "quantity": 2,
           "id": "ad01"
         }
       ],

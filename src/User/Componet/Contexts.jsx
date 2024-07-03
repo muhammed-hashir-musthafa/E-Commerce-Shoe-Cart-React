@@ -13,6 +13,7 @@ export const CartProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [filterUsers, setFilterUsers] = useState(users);
   const [category, setCategory] = useState("all");
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/User")
@@ -151,7 +152,7 @@ export const CartProvider = ({ children }) => {
         setCategory,
         searchFilterUser,
         categorize,
-        users
+        users,
       }}
     >
       {children}

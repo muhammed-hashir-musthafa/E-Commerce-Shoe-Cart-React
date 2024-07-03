@@ -18,6 +18,8 @@ import AdminAddProduct from "./Admin/Pages/AdminAddProduct";
 import AdminProductUpdate from "./Admin/Components/AdminProductUpdate";
 import AdminUserCart from "./Admin/Components/AdminUserCart";
 import AdminOrderList from "./Admin/Components/AdminOrderList";
+import LoginProtect from "./User/Componet/LoginProtect";
+import AdminProtect from "./User/Componet/AdminProtect";
 
 function App() {
   return (
@@ -47,18 +49,18 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="registration" element={<RegistrationPage />} />
+          <Route path="login" element={<LoginProtect element={<LoginPage />}  />}  />
+          <Route path="registration"  element={<LoginProtect element={<RegistrationPage />}  />}  />
 
           {/* Admin Routes */}
 
-          <Route path="/admin" element={<ProtectedRoute element={<AdminSidebar /> } />}>
-            <Route path="/admin" element={<ProtectedRoute element={<AdminHomePage /> } /> }/>
-            <Route path="/admin/userslist" element={<ProtectedRoute element={<UsersLists />} /> }/>
-            <Route path="/admin/addproduct" element={<ProtectedRoute element={<AdminAddProduct />} /> }/>
-            <Route path="/admin/products/:id" element={<ProtectedRoute element={<AdminProductUpdate /> }/>  }/>
-            <Route path="/admin/userslist/user/:id" element={<ProtectedRoute  element={<AdminUserCart />}/>}/>
-            <Route path="/admin/userslist/user/:id/orders" element={<ProtectedRoute   element={<AdminOrderList /> }/>}/>
+          <Route path="/admin" element={<AdminProtect element={<ProtectedRoute element={<AdminSidebar /> } />} /> } >
+            <Route path="/admin" element={<AdminProtect  element={<ProtectedRoute element={<AdminHomePage /> } /> } />}/>
+            <Route path="/admin/userslist" element={<AdminProtect  element={<ProtectedRoute element={<UsersLists /> } /> } />}/>
+            <Route path="/admin/addproduct" element={<AdminProtect  element={<ProtectedRoute element={<AdminAddProduct /> } /> } />}/>
+            <Route path="/admin/products/:id" element={<AdminProtect  element={<ProtectedRoute element={<AdminProductUpdate /> } /> } />}/>
+            <Route path="/admin/userslist/user/:id" element={<AdminProtect  element={<ProtectedRoute  element={<AdminUserCart /> } /> } />}/>
+            <Route path="/admin/userslist/user/:id/orders" element={<AdminProtect  element={<ProtectedRoute   element={<AdminOrderList/> } /> } />}/>
 
 
           </Route>
@@ -70,6 +72,3 @@ function App() {
 }
 
 export default App;
-
-
-//axiosinterseptor
