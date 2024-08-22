@@ -38,16 +38,9 @@ function App() {
             <Route path="Contact" element={<ContactPage />} />
             <Route
               path="cart"
-              element={<ProtectedRoute element={<CartPage />} />}
-            />
-            <Route
-              path="products/:id" 
-              element={<ProtectedRoute element={<ProductDetails />} />}
-            />
-            <Route
-              path="paymentsection"
-              element={<ProtectedRoute element={<PaymentSection />} />}
-            />
+              element={<ProtectedRoute element={<CartPage />} />}/>
+            <Route path="products/:id" element={<ProtectedRoute element={<ProductDetails />} />}/>
+            <Route path="paymentsection" element={<ProtectedRoute element={<PaymentSection />} />}/>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
           <Route path="login" element={<LoginProtect element={<LoginPage />}  />}  />

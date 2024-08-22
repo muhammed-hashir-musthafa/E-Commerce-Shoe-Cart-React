@@ -6,7 +6,7 @@
       "email": "test@gmail.com",
       "password": "aQ@123456",
       "address": [
-        "Test City , Testogram "
+        "Test City , Testogram"
       ],
       "pincode": [
         "987654"
@@ -113,24 +113,24 @@
       "pincode": [],
       "cart": [
         {
-          "title": "Otes Tan Men Ruosh",
-          "imageSrc": "https://img.tatacliq.com/images/i11/437Wx649H/MP000000017535835_437Wx649H_202305142316151.jpeg",
+          "title": "Men's Hiking shoe",
+          "imageSrc": "https://cdn.pixabay.com/photo/2015/02/09/13/41/shoe-629644_960_720.jpg",
           "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "3000",
-          "color": "Brown",
+          "price": "5000",
+          "color": "Orange",
           "category": "men",
           "quantity": 2,
-          "id": "dc5e"
+          "id": "ad01"
         },
         {
-          "id": "9f5b",
-          "title": "Women's North Plus",
-          "imageSrc": "https://www.campusshoes.com/cdn/shop/files/NORTHPLUS_11G-677_BLK.jpg?v=1705644888",
+          "id": "00a4",
+          "title": "JOGFLOW 100 Grip",
+          "imageSrc": "https://contents.mediadecathlon.com/p2393894/ae11c369077717da979826d33db65b1c/p2393894.jpg?format=auto&quality=70&f=650x0",
           "imageAlt": "Front of men's Basic Tee in black.",
-          "price": "3500",
-          "color": "Black",
-          "category": "women",
-          "quantity": 2
+          "price": "2500",
+          "color": "Khaki ",
+          "category": "men",
+          "quantity": 4
         }
       ],
       "orders": []
